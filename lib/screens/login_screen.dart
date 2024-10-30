@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_api_intrgration/screens/surgery/landing_screen.dart';
 import '../Controller/login_page_controller.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -166,6 +167,11 @@ class _LoginScreen extends State<LoginScreen> {
                             usernameController.text,
                             passwordController.text);
                         if (check) {
+                          Navigator.of(context).push(
+                            MaterialPageRoute(
+                              builder: (context) => LandingScreen(),
+                            ),
+                          );
                           print('Success');
                         } else {
                           print('fail');

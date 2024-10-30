@@ -24,10 +24,13 @@ class LoginPageController {
 
   Future<bool> validateUsers(String username, String password,
       TenantResponseModel tenantResponse) async {
-    LoginModel userData =
-        new LoginModel(userNameOrEmailAddress: username, password: password);
+    LoginModel userData = new LoginModel(
+        userNameOrEmailAddress: username,
+        password: password,
+        tenancyName: 'FOI');
     LoginRespModel apiResponse = await _apiService.authenticateUser(
         userData, tenantResponse.result?.tenantId);
+    if (apiResponse.success) return true;
     return false;
   }
 }

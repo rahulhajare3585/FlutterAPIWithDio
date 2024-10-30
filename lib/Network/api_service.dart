@@ -14,6 +14,7 @@ class ApiService {
   final Map<String, String> headers = {
     'Content-Type': 'application/json',
     'Accept': 'application/json',
+    'Abp.TenantId': '4'
   };
 
   // Check available tenant
@@ -40,6 +41,10 @@ class ApiService {
       LoginModel userdata, int? tenantId) async {
     headers['Abp.TenantId'] = tenantId.toString();
 
+    print('Headers: $headers');
+    print('URL: $configurationUrl/api/TokenAuth/Authenticate');
+    print('Request Body: ${userdata.toJson()}');
+
     try {
       Response response = await dio.post(
         '$configurationUrl/api/TokenAuth/Authenticate',
@@ -47,9 +52,9 @@ class ApiService {
         options: Options(headers: headers),
       );
 
-      print(response.data);
+      // print('Response Status: ${response.statusCode}');
+      print('Response Data: ${response.data}');
 
-      // Convert response data to LoginRespModel
       return LoginRespModel.fromJson(response.data);
     } catch (e) {
       print("Error: $e");

@@ -1,37 +1,21 @@
 class LoginModel {
-  String userNameOrEmailAddress;
-  String password;
-  String? twoFactorVerificationCode;
-  bool? rememberClient;
-  String? twoFactorRememberClientToken;
-  bool? singleSignIn;
-  String? returnUrl;
-  String? captchaResponse;
-  int? tenantId;
+  String? userNameOrEmailAddress;
+  String? password;
+  String? tenancyName;
 
-  LoginModel({
-    required this.userNameOrEmailAddress,
-    required this.password,
-    this.twoFactorVerificationCode,
-    this.rememberClient,
-    this.twoFactorRememberClientToken,
-    this.singleSignIn,
-    this.returnUrl,
-    this.captchaResponse,
-    this.tenantId,
-  });
+  LoginModel({this.userNameOrEmailAddress, this.password, this.tenancyName});
+
+  LoginModel.fromJson(Map<String, dynamic> json) {
+    userNameOrEmailAddress = json['userNameOrEmailAddress'];
+    password = json['password'];
+    tenancyName = json['tenancyName'];
+  }
 
   Map<String, dynamic> toJson() {
-    return {
-      'userNameOrEmailAddress': userNameOrEmailAddress,
-      'password': password,
-      'twoFactorVerificationCode': twoFactorVerificationCode,
-      'rememberClient': rememberClient,
-      'twoFactorRememberClientToken': twoFactorRememberClientToken,
-      'singleSignIn': singleSignIn,
-      'returnUrl': returnUrl,
-      'captchaResponse': captchaResponse,
-      'tenantId': tenantId,
-    };
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['userNameOrEmailAddress'] = this.userNameOrEmailAddress;
+    data['password'] = this.password;
+    data['tenancyName'] = this.tenancyName;
+    return data;
   }
 }
