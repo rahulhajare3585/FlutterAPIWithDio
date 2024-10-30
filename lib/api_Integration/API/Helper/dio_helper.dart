@@ -1,4 +1,4 @@
-import 'package:flutter_api_intrgration/API/injection_container.dart';
+import 'package:flutter_api_intrgration/api_Integration/API/injection_container.dart';
 import 'package:dio/dio.dart';
 
 class DioHelper {
@@ -11,7 +11,7 @@ class DioHelper {
     Options options = Options();
 
     if (isAuthRequired) {
-      options.headers = headers;
+      //options.headers = headers;
     }
 
     try {
@@ -31,7 +31,7 @@ class DioHelper {
   }) async {
     Options options = Options();
     if (isAuthRequired) {
-      options.headers = headers;
+      // options.headers = headers;
     }
 
     try {
@@ -55,7 +55,7 @@ class DioHelper {
   }) async {
     Options options = Options();
     if (isAuthRequired) {
-      options.headers = headers;
+      //options.headers = headers;
     }
 
     try {
@@ -79,7 +79,7 @@ class DioHelper {
   }) async {
     Options options = Options();
     if (isAuthRequired) {
-      options.headers = headers;
+      // options.headers = headers;
     }
 
     try {
@@ -103,15 +103,15 @@ class DioHelper {
   }) async {
     Options options = Options();
     if (isAuthRequired) {
-      options.headers = headers;
+      // options.headers = headers;
     }
 
     try {
       Response response;
       if (requestBody == null) {
-        response = await dio.delete(url, options: options);
+        response = await dio.patch(url, options: options);
       } else {
-        response = await dio.delete(url, data: requestBody, options: options);
+        response = await dio.patch(url, data: requestBody, options: options);
       }
       return response;
     } catch (e) {

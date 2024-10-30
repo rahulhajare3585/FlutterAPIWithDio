@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_api_intrgration/API/model/req_model.dart';
-import 'package:flutter_api_intrgration/API/model/response_in_list_model.dart';
-import 'package:flutter_api_intrgration/API/repository.dart';
+import 'package:flutter_api_intrgration/api_Integration/API/model/req_model.dart';
+import 'package:flutter_api_intrgration/api_Integration/API/model/response_in_list_model.dart';
+import 'package:flutter_api_intrgration/api_Integration/API/repository.dart';
 import '../API/model/response_in_map_model.dart';
 
 class ListApiPage extends StatefulWidget {

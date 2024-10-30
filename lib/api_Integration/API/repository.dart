@@ -1,8 +1,6 @@
-import 'package:dio/dio.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_api_intrgration/API/Helper/dio_helper.dart';
-import 'package:flutter_api_intrgration/API/model/response_in_list_model.dart';
-import '../API/model/response_in_map_model.dart';
+import 'package:flutter_api_intrgration/api_Integration/API/Helper/dio_helper.dart';
+import 'package:flutter_api_intrgration/api_Integration/API/model/response_in_list_model.dart';
+import 'model/response_in_map_model.dart';
 
 class Repository {
   static final DioHelper _dioHelper = DioHelper();
@@ -62,6 +60,20 @@ class Repository {
       return (response.data as List)
           .map((item) => ResponseInListModel.fromJson(item))
           .toList();
+    } else {
+      throw Exception("Failed to load data");
+    }
+  }
+
+  // response in List without model
+  Future<dynamic> getResponseInListWithoutModel() async {
+    var response = await _dioHelper.get(
+      url: 'https://jsonplaceholder.typicode.com/posts',
+    );
+
+    // Ensure response is not null, and cast the data to List<dynamic>
+    if (response != null) {
+      return response;
     } else {
       throw Exception("Failed to load data");
     }
