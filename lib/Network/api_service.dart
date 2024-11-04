@@ -17,7 +17,7 @@ class ApiService {
     'Abp.TenantId': '4'
   };
 
-  // Check available tenant
+  ///[Post]
   Future<TenantResponseModel> checkTenantAvailability(
       TenantRequestModel requestModel) async {
     try {
@@ -36,7 +36,7 @@ class ApiService {
     }
   }
 
-  // User authentication
+  ///[Post]
   Future<LoginRespModel> authenticateUser(
       LoginModel userdata, int? tenantId) async {
     headers['Abp.TenantId'] = tenantId.toString();

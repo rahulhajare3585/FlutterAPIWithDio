@@ -50,6 +50,33 @@ class _LoginScreen extends State<LoginScreen> {
     );
   }
 
+  Future<void> _showAlertDialog() async {
+    return showDialog<void>(
+      context: context,
+      barrierDismissible: false, // user must tap button!
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Text('Welcome'),
+          content: const SingleChildScrollView(
+            child: ListBody(
+              children: <Widget>[
+                Text('Login successfull.'),
+              ],
+            ),
+          ),
+          actions: <Widget>[
+            TextButton(
+              child: const Text('ok'),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+          ],
+        );
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -173,6 +200,7 @@ class _LoginScreen extends State<LoginScreen> {
                             ),
                           );
                           print('Success');
+                          _showAlertDialog();
                         } else {
                           print('fail');
                         }

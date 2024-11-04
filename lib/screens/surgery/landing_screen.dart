@@ -5,10 +5,13 @@ class LandingScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Landing screen'),
+        title: Text('Surgery'),
+        backgroundColor: Colors.blue,
       ),
-      body: Container(
-        child: Text('Welcome'),
+      body: Center(
+        child: Container(
+          child: Text('Welcome'),
+        ),
       ),
     );
   }

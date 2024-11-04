@@ -8,6 +8,7 @@ import '../model/login_model.dart';
 class LoginPageController {
   ApiService _apiService = ApiService();
 
+  ///[Post]
   Future<bool> authenticateUser(
       String tenantName, String username, String password) async {
     TenantRequestModel tenantData = TenantRequestModel(tenancyName: tenantName);
@@ -22,6 +23,7 @@ class LoginPageController {
     }
   }
 
+  ///[Post]
   Future<bool> validateUsers(String username, String password,
       TenantResponseModel tenantResponse) async {
     LoginModel userData = new LoginModel(
