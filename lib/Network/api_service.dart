@@ -7,7 +7,7 @@ import '../model/login_response_model.dart';
 
 class ApiService {
   final Config config = Config();
-  final String configurationUrl = Config().baseUrl;
+  final String baseUrl = Config().baseUrl;
   final Dio dio = Dio();
 
   // Define the headers without the tenant id initially
@@ -22,7 +22,7 @@ class ApiService {
       TenantRequestModel requestModel) async {
     try {
       Response response = await dio.post(
-        '$configurationUrl/api/services/app/Account/IsTenantAvailable',
+        '$baseUrl/api/services/app/Account/IsTenantAvailable',
         data: requestModel.toJson(),
         options: Options(headers: headers),
       );
@@ -42,12 +42,12 @@ class ApiService {
     headers['Abp.TenantId'] = tenantId.toString();
 
     print('Headers: $headers');
-    print('URL: $configurationUrl/api/TokenAuth/Authenticate');
+    print('URL: $baseUrl/api/TokenAuth/Authenticate');
     print('Request Body: ${userdata.toJson()}');
 
     try {
       Response response = await dio.post(
-        '$configurationUrl/api/TokenAuth/Authenticate',
+        '$baseUrl/api/TokenAuth/Authenticate',
         data: userdata.toJson(),
         options: Options(headers: headers),
       );

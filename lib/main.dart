@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_api_intrgration/screens/splash_screen.dart';
+import 'package:hive/hive.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 
-void main() {
+void main() async {
+  await Hive.initFlutter('foi_offline_db');
   runApp(const MyApp());
 }
 
