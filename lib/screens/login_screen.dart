@@ -194,11 +194,8 @@ class _LoginScreen extends State<LoginScreen> {
                             usernameController.text,
                             passwordController.text);
                         if (check) {
-                          Navigator.of(context).push(
-                            MaterialPageRoute(
-                              builder: (context) => LandingScreen(),
-                            ),
-                          );
+                          //redirect to the home screen
+                          Navigator.pushNamed(context, '/home_screen');
                           print('Success');
                           _showAlertDialog();
                         } else {

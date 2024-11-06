@@ -1,4 +1,6 @@
 import 'package:flutter_api_intrgration/model/login_response_model.dart';
+import 'package:flutter_api_intrgration/model/offline/controller/offline_sync_controller.dart';
+import 'package:hive/hive.dart';
 
 import '../model/tenant_request_model.dart';
 import '../model/tenant_response_model.dart';
@@ -26,13 +28,26 @@ class LoginPageController {
   ///[Post]
   Future<bool> validateUsers(String username, String password,
       TenantResponseModel tenantResponse) async {
-    LoginModel userData = new LoginModel(
-        userNameOrEmailAddress: username,
-        password: password,
-        tenancyName: 'FOI');
+    LoginModel userData = LoginModel(
+      userNameOrEmailAddress: username,
+      password: password,
+      tenancyName: 'FOI',
+    );
+
+    // Await the opening of the 'Authentication' box
+    var box = await Hive.openBox('Authentication');
+
+    await box.put('abp_tanant_id', tenantResponse.result?.tenantId.toString());
+
     LoginRespModel apiResponse = await _apiService.authenticateUser(
         userData, tenantResponse.result?.tenantId);
-    if (apiResponse.success) return true;
+
+    if (apiResponse.success) {
+      await box.put('access_token', apiResponse.result.accessToken.toString());
+      OfflineSyncController().syncOfflineAssistantSurgeon();
+      return true;
+    }
+
     return false;
   }
 }
